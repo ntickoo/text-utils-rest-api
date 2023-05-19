@@ -20,7 +20,7 @@ To run use the command below.
 
 # Run the docker container
 
-    docker run -e "SPRING_PROFILES_ACTIVE=prod" -p 8080:8080 tickoon/text-utils-rest-api
+    docker run -p 8080:8080 tickoon/text-utils-rest-api
 
 Swagger/Open API Specs: Once the container is running, use the rest end points by below url - 
 
