@@ -46,7 +46,7 @@ public class TextUtilsController {
 		    @ApiResponse(description = "Internal error", responseCode = "500", content = @Content) })
     @PostMapping(path = "/value:has-all-english-chars")
     public ResponseEntity<ValidationResultInfo> hasAllEnglishCharacters(@Valid @RequestBody TextInput inputText) {
-	log.info("getAsset for path param {}", inputText.getValue());
+	log.info("hasAllEnglishCharacters, param {}", inputText.getValue());
 
 	final boolean result = textUtilsService.containsAllEnglishCharactersIgnoreCase(inputText.getValue());
 	return ResponseEntity.ok(modelMapper.map(result, ValidationResultInfo.class));
