@@ -25,30 +25,31 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @RestController
-@RequestMapping(path = { "/api/v1/text" }, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path = {"/api/v1/text"}, produces = APPLICATION_JSON_VALUE)
 @Tag(name = "TextUtils", description = "API Endpoints for utility functions for string/text.")
 public class TextUtilsController {
 
     private final TextUtilsService textUtilsService;
-    
+
     private final ModelMapper modelMapper;
 
     @Autowired
     public TextUtilsController(TextUtilsService textUtilsService, ModelMapper modelMapper) {
-	this.textUtilsService = textUtilsService;
-	this.modelMapper = modelMapper;
+        this.textUtilsService = textUtilsService;
+        this.modelMapper = modelMapper;
     }
 
     @Operation(summary = "Checks if the input string contains all english alphabets ignoring the case.", tags = {
-	    "TextUtils" }, responses = {
-		    @ApiResponse(description = "Success", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationResultInfo.class))),
-		    @ApiResponse(description = "Bad request", responseCode = "400", content = @Content),
-		    @ApiResponse(description = "Internal error", responseCode = "500", content = @Content) })
+            "TextUtils"}, responses = {
+            @ApiResponse(description = "Success", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationResultInfo.class))),
+            @ApiResponse(description = "Bad request", responseCode = "400", content = @Content),
+            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+    })
     @PostMapping(path = "/value:has-all-english-chars")
     public ResponseEntity<ValidationResultInfo> hasAllEnglishCharacters(@Valid @RequestBody TextInput inputText) {
-	log.info("hasAllEnglishCharacters, param {}", inputText.getValue());
+        log.info("hasAllEnglishCharacters, param {}", inputText.getValue());
 
-	final boolean result = textUtilsService.containsAllEnglishCharactersIgnoreCase(inputText.getValue());
-	return ResponseEntity.ok(modelMapper.map(result, ValidationResultInfo.class));
+        final boolean result = textUtilsService.containsAllEnglishCharactersIgnoreCase(inputText.getValue());
+        return ResponseEntity.ok(modelMapper.map(result, ValidationResultInfo.class));
     }
 }

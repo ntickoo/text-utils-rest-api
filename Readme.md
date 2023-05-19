@@ -1,14 +1,17 @@
 # Requirements
 
-For local development/build - Java 8
+For local development/build - Java 17
 
 # How to build
-
-    gradle build
+```shell
+gradle bootJar
+```
 
 # Build docker image yourself
 
-    docker build . -t tickoon/text-utils-rest-api
+```shell
+docker build . -t tickoon/text-utils-rest-api
+```
 
 # Download the image from dockerhub and run it
 
@@ -20,7 +23,9 @@ To run use the command below.
 
 # Run the docker container
 
-    docker run -p 8080:8080 tickoon/text-utils-rest-api
+```shell
+docker run -p 8080:8080 tickoon/text-utils-rest-api
+```
 
 Swagger/Open API Specs: Once the container is running, use the rest end points by below url - 
 
